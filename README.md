@@ -11,7 +11,9 @@ You shouldn't run this step if you are not sure. There is a terraform.tfstate fi
 to start from the begining.
 
 ```cd $ROOT/infrastructure/init``` 
+
 ```terraform init``` 
+
 ```terraform apply``` 
 
 This will create the lock table in DynamoDB and the S3 bucket for storing the current Terraform state for all other modules. In all other directories listed below, you will need to do, at a minimum terraform init to get your working directory synced with the live state.
@@ -19,7 +21,9 @@ This will create the lock table in DynamoDB and the S3 bucket for storing the cu
 ## Source Layout
 
 **environments:** folder to isolate various environment (development/test/stage/production) specific configuration.
+
 **modules:** folder to host reusable resource sets (modules)
+
 **init:** folder with sources for Big Bang Step
 
 Region specific configurations are managed through their respective <workspace>.tfvars file. For example, environments/development/eu-central-1.tfvars file for eu-central-1 region in development environment.
@@ -55,12 +59,17 @@ To get started, first initialize your local terraform state information
 **Plan & apply changes**
 
 ```terraform plan -var-file ap-southeast-2.tfvars -var-file terraform.tfvar```
+
 ```terraform apply -var-file ap-southeast-2.tfvars -var-file terraform.tfvar```
 
 **Repeat for other regions**
 
 For ap-southeast-1 region:
+
 ```terraform workspace new ap-southeast-1```
+
 ```terraform workspace select ap-southeast-1```
+
 ```terraform plan -var-file=ap-southeast-1.tfvars -var-file terraform.tfvar```
+
 ```terraform apply -var-file=ap-southeast-1.tfvars -var-file terraform.tfvar```
